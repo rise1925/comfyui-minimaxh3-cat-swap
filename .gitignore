@@ -12,3 +12,7 @@ input/
 output/
 .DS_Store
 Thumbs.db
+
+# sample inputs are allowed
+!examples/*.png
+!examples/*.mp4

@@ -15,6 +15,8 @@ How I replaced a cat in a video with my own Maine Coon. No coding: I just asked 
 | `workflows/02_sam3_masks_api.json` | (Advanced) With several cats, makes mask videos for the cat to change and the cat to keep. |
 | `workflows/03_one_cat_masked_edit_api.json` | (Advanced) Changes only the cat inside the mask. Needs the h3-relay nodes. |
 | `workflows/04_seedvr2_7b_upscale_api.json` | (Optional) Upscales to 1080×1920 with SeedVR2 7B. |
+| `examples/my_cat_reference_sheet.png` | Sample reference sheet (my cat, real photos). |
+| `examples/input_video.mp4` | Sample input video (21 s, 544×960, no sound): my final swap result. |
 | `prompts/claude_requests.en.md` | The requests I gave Claude, step by step. |
 | `prompts/prompt_template.en.md` | Prompt template: just fill in the brackets. |
 | `docs/install.en.md` | Installation and what to prepare. |
@@ -26,6 +28,7 @@ How I replaced a cat in a video with my own Maine Coon. No coding: I just asked 
 2. Put these in ComfyUI's `input` folder:
    - `my_cat_reference_sheet.png`: your cat's reference sheet
    - `input_video.mp4`: the video to change
+   - To try it right away, copy the two files from `examples/`. Workflow 01 then swaps the long-haired cat in front (first 158 frames) for the cat in the sheet. Put your own cat's sheet in to see it change.
 3. Drag a workflow json onto the ComfyUI canvas.
 4. Rewrite the cat description in the prompt for your cat (see `prompts/prompt_template.en.md`).
 5. Test a short clip first (22–56 frames), then render the full length.

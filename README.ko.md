@@ -15,6 +15,8 @@
 | `workflows/02_sam3_masks_api.json` | (고급) 여러 마리 중 바꿀 고양이와 그대로 둘 고양이의 마스크 영상을 만듭니다. |
 | `workflows/03_one_cat_masked_edit_api.json` | (고급) 마스크 안의 고양이만 바꿉니다. h3-relay 노드가 필요합니다. |
 | `workflows/04_seedvr2_7b_upscale_api.json` | (선택) SeedVR2 7B로 1080×1920 업스케일. |
+| `examples/my_cat_reference_sheet.png` | 샘플 참조 시트 (우리 고양이 실제 사진). |
+| `examples/input_video.mp4` | 샘플 입력 영상 (21초, 544×960, 소리 없음). 제 최종 스왑 결과 영상입니다. |
 | `prompts/claude_requests.ko.md` | 단계별로 Claude에게 한 요청문. |
 | `prompts/prompt_template.ko.md` | 대괄호만 바꿔 쓰는 프롬프트 틀. |
 | `docs/install.ko.md` | 설치와 재료 준비. |
@@ -26,6 +28,7 @@
 2. ComfyUI `input` 폴더에 넣습니다.
    - `my_cat_reference_sheet.png`: 우리 고양이 참조 시트
    - `input_video.mp4`: 바꿀 영상
+   - 바로 시험해 보려면 `examples/` 폴더의 두 파일을 복사하세요. 01번 워크플로가 앞쪽의 털 긴 고양이(처음 158프레임)를 참조 시트의 고양이로 바꿉니다. 참조 시트를 내 고양이 것으로 바꿔 넣으면 바뀌는 걸 볼 수 있어요.
 3. 워크플로 json을 ComfyUI 화면에 끌어다 놓습니다.
 4. 프롬프트의 고양이 설명을 `prompts/prompt_template.ko.md`를 보고 우리 고양이에 맞게 고칩니다.
 5. 먼저 짧게(22~56프레임) 시험하고, 괜찮으면 전체를 만듭니다.
