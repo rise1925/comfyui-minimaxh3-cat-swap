@@ -1,0 +1,14 @@
+# keep media, models and personal files out of the repo
+*.mp4
+*.mov
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.safetensors
+*.gguf
+*.ckpt
+input/
+output/
+.DS_Store
+Thumbs.db

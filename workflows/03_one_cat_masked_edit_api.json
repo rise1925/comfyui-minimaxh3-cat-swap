@@ -1,0 +1,323 @@
+{
+  "115": {
+    "inputs": {
+      "aspect_ratio": "9:16 (Portrait Widescreen)",
+      "megapixels": 0.5,
+      "multiple": 32
+    },
+    "class_type": "ResolutionSelector",
+    "_meta": {
+      "title": "Resolution Selector (Size)"
+    }
+  },
+  "136": {
+    "inputs": {
+      "ref_image_size": "max",
+      "clip": [
+        "151",
+        0
+      ],
+      "prompt": "Replace the selected cat in <Video 1> with the cat in <Picture 1>. The selected cat is the cream-colored cat standing on its hind legs and dancing in front of the wooden fence, farther back. <Picture 1> shows one real Maine Coon cat from several angles; it has small dark gray-brown eyes with heavy, half-closed lids, a narrow white blaze, a pure white muzzle and chest ruff, large ears with long white tufts, pale ginger-gold fur on the top of its head and the upper sides of its back, and very long, silky, wispy fur. Keep the reference cat's face, eyes and fur colors. Follow the source performance's pose, gaze and every dance movement exactly. In <Video 1> there is exactly one cat. The flat dark gray shape in front of it is not a cat or an animal. Preserve the scene.",
+      "width": [
+        "115",
+        0
+      ],
+      "height": [
+        "115",
+        1
+      ],
+      "length": 175,
+      "vae": [
+        "152",
+        0
+      ],
+      "ref_images.ref_image_0": [
+        "500",
+        0
+      ],
+      "ref_videos.ref_video_0": [
+        "620",
+        0
+      ]
+    },
+    "class_type": "MiniMaxH3ReferenceToVideo",
+    "_meta": {
+      "title": "MiniMax H3 Reference to Video"
+    }
+  },
+  "151": {
+    "inputs": {
+      "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "type": "minimax",
+      "device": "default"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "CLIPLoader (GGUF)"
+    }
+  },
+  "376": {
+    "inputs": {
+      "image": [
+        "392",
+        0
+      ],
+      "upscale_method": "nearest-exact",
+      "width": [
+        "115",
+        0
+      ],
+      "height": [
+        "115",
+        1
+      ],
+      "crop": "disabled"
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "Resize Image v2"
+    }
+  },
+  "92": {
+    "inputs": {
+      "filename_prefix": "video/one_cat_swap",
+      "format": "auto",
+      "codec": "auto",
+      "video": [
+        "130",
+        0
+      ]
+    },
+    "class_type": "SaveVideo",
+    "_meta": {
+      "title": "Save Video"
+    }
+  },
+  "152": {
+    "inputs": {
+      "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "124": {
+    "inputs": {
+      "scheduler": "simple",
+      "steps": 20,
+      "denoise": 1,
+      "model": [
+        "147",
+        0
+      ]
+    },
+    "class_type": "BasicScheduler",
+    "_meta": {
+      "title": "BasicScheduler"
+    }
+  },
+  "147": {
+    "inputs": {
+      "lora_name": "h3_character_swap_v1.5.safetensors",
+      "strength_model": 1,
+      "model": [
+        "150",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "Load LoRA"
+    }
+  },
+  "500": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "my_cat_reference_sheet.png"
+    }
+  },
+  "122": {
+    "inputs": {
+      "samples": [
+        "125",
+        0
+      ],
+      "vae": [
+        "152",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "392": {
+    "class_type": "VHS_LoadVideo",
+    "inputs": {
+      "video": "crop_source.mp4",
+      "force_rate": 24,
+      "custom_width": 0,
+      "custom_height": 0,
+      "frame_load_cap": 175,
+      "skip_first_frames": 0,
+      "select_every_nth": 1,
+      "format": "AnimateDiff"
+    }
+  },
+  "130": {
+    "inputs": {
+      "fps": 24,
+      "bit_depth": 8,
+      "color_space": "sRGB",
+      "codec": "none",
+      "images": [
+        "122",
+        0
+      ]
+    },
+    "class_type": "CreateVideo",
+    "_meta": {
+      "title": "Create Video"
+    }
+  },
+  "125": {
+    "inputs": {
+      "noise": [
+        "129",
+        0
+      ],
+      "guider": [
+        "126",
+        0
+      ],
+      "sampler": [
+        "123",
+        0
+      ],
+      "sigmas": [
+        "124",
+        0
+      ],
+      "latent_image": [
+        "603",
+        0
+      ]
+    },
+    "class_type": "SamplerCustomAdvanced",
+    "_meta": {
+      "title": "SamplerCustomAdvanced"
+    }
+  },
+  "126": {
+    "inputs": {
+      "model": [
+        "147",
+        0
+      ],
+      "conditioning": [
+        "136",
+        0
+      ]
+    },
+    "class_type": "BasicGuider",
+    "_meta": {
+      "title": "Basic Guider"
+    }
+  },
+  "129": {
+    "inputs": {
+      "noise_seed": 904234
+    },
+    "class_type": "RandomNoise",
+    "_meta": {
+      "title": "RandomNoise"
+    }
+  },
+  "150": {
+    "inputs": {
+      "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "Load Diffusion Model"
+    }
+  },
+  "123": {
+    "inputs": {
+      "sampler_name": "res_multistep"
+    },
+    "class_type": "KSamplerSelect",
+    "_meta": {
+      "title": "KSamplerSelect"
+    }
+  },
+  "600": {
+    "class_type": "VHS_LoadVideo",
+    "inputs": {
+      "video": "crop_mask.mp4",
+      "force_rate": 24,
+      "custom_width": 0,
+      "custom_height": 0,
+      "frame_load_cap": 175,
+      "skip_first_frames": 0,
+      "select_every_nth": 1,
+      "format": "AnimateDiff"
+    }
+  },
+  "601": {
+    "class_type": "ImageToMask",
+    "inputs": {
+      "image": [
+        "600",
+        0
+      ],
+      "channel": "red"
+    }
+  },
+  "602": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "376",
+        0
+      ],
+      "vae": [
+        "152",
+        0
+      ]
+    }
+  },
+  "603": {
+    "class_type": "H3RelayApplyEditMask",
+    "inputs": {
+      "latent": [
+        "136",
+        1
+      ],
+      "source_latent": [
+        "602",
+        0
+      ],
+      "mask": [
+        "601",
+        0
+      ]
+    }
+  },
+  "620": {
+    "class_type": "VHS_LoadVideo",
+    "inputs": {
+      "video": "crop_reference_gray.mp4",
+      "force_rate": 24,
+      "custom_width": 0,
+      "custom_height": 0,
+      "frame_load_cap": 175,
+      "skip_first_frames": 0,
+      "select_every_nth": 1,
+      "format": "AnimateDiff"
+    }
+  }
+}

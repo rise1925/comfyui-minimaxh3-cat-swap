@@ -1,0 +1,163 @@
+{
+  "1": {
+    "class_type": "VHS_LoadVideo",
+    "inputs": {
+      "video": "input_video.mp4",
+      "force_rate": 24,
+      "custom_width": 0,
+      "custom_height": 0,
+      "frame_load_cap": 0,
+      "skip_first_frames": 0,
+      "select_every_nth": 1,
+      "format": "AnimateDiff"
+    }
+  },
+  "2": {
+    "class_type": "CheckpointLoaderSimple",
+    "inputs": {
+      "ckpt_name": "sam3.1_multiplex_fp16.safetensors"
+    }
+  },
+  "10": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "2",
+        1
+      ],
+      "text": "cream cat"
+    }
+  },
+  "11": {
+    "class_type": "SAM3_VideoTrack",
+    "inputs": {
+      "images": [
+        "1",
+        0
+      ],
+      "model": [
+        "2",
+        0
+      ],
+      "conditioning": [
+        "10",
+        0
+      ],
+      "detection_threshold": 0.5,
+      "max_objects": 1,
+      "detect_interval": 1
+    }
+  },
+  "12": {
+    "class_type": "SAM3_TrackToMask",
+    "inputs": {
+      "track_data": [
+        "11",
+        0
+      ],
+      "object_indices": ""
+    }
+  },
+  "13": {
+    "class_type": "MaskToImage",
+    "inputs": {
+      "mask": [
+        "12",
+        0
+      ]
+    }
+  },
+  "14": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "13",
+        0
+      ],
+      "fps": 24
+    }
+  },
+  "15": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "14",
+        0
+      ],
+      "filename_prefix": "video/sam3_mask0",
+      "format": "auto",
+      "codec": "auto"
+    }
+  },
+  "20": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "2",
+        1
+      ],
+      "text": "black and white cat"
+    }
+  },
+  "21": {
+    "class_type": "SAM3_VideoTrack",
+    "inputs": {
+      "images": [
+        "1",
+        0
+      ],
+      "model": [
+        "2",
+        0
+      ],
+      "conditioning": [
+        "20",
+        0
+      ],
+      "detection_threshold": 0.5,
+      "max_objects": 1,
+      "detect_interval": 1
+    }
+  },
+  "22": {
+    "class_type": "SAM3_TrackToMask",
+    "inputs": {
+      "track_data": [
+        "21",
+        0
+      ],
+      "object_indices": ""
+    }
+  },
+  "23": {
+    "class_type": "MaskToImage",
+    "inputs": {
+      "mask": [
+        "22",
+        0
+      ]
+    }
+  },
+  "24": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "23",
+        0
+      ],
+      "fps": 24
+    }
+  },
+  "25": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "24",
+        0
+      ],
+      "filename_prefix": "video/sam3_mask1",
+      "format": "auto",
+      "codec": "auto"
+    }
+  }
+}

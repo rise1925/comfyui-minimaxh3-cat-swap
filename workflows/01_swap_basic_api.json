@@ -1,0 +1,257 @@
+{
+  "115": {
+    "inputs": {
+      "aspect_ratio": "9:16 (Portrait Widescreen)",
+      "megapixels": 0.5,
+      "multiple": 32
+    },
+    "class_type": "ResolutionSelector",
+    "_meta": {
+      "title": "Resolution Selector (Size)"
+    }
+  },
+  "136": {
+    "inputs": {
+      "ref_image_size": "max",
+      "clip": [
+        "151",
+        0
+      ],
+      "prompt": "A single continuous uninterrupted take. <Picture 1> shows one real Maine Coon cat from several angles and poses; every face in <Picture 1> belongs to this same cat. The cat's face matches <Picture 1> exactly: small, dark gray-brown eyes with heavy, half-closed upper lids that give it a calm, sleepy look; a narrow white blaze running from the forehead down to a small pink nose; a plain, pure white muzzle and chin with smooth, unmarked white whisker pads; thin, fine white whiskers of moderate length; and large, wide ears with pink insides and long white ear tufts. The top of its head and the area around its ears are soft, smooth, unstriped pale ginger-gold fur that blends gently into white. Its bicolor coat is mostly pure white: white covers its muzzle, cheeks, the blaze, the neck, a very large chest ruff, the belly, and both forelegs, with soft patches of pale ginger-gold on the top of its head, around its ears, and on the upper sides of its back. Its fur is very long, silky, and wispy. The cream-colored cat closest to the camera in <Video 1> is replaced by this cat from <Picture 1>. It keeps exactly the same body, size, position in the frame, pose, and every movement of the cream-colored cat in <Video 1>, but it has the face, eyes, fur colors, and markings of <Picture 1>. Its two front paws perform every gesture of the cream-colored cat in <Video 1>, including raising a paw and holding the sides of its head, and its forelegs are bright pure white. Its jaw opens as wide as the cream-colored cat's mouth in <Video 1> in every frame, with the same huge opening, timing, and shape, showing a large pink mouth and cat teeth. The black-and-white cat standing farther back, the wooden fence, the plants, the ground, and the lighting stay exactly as they are in <Video 1> from the first frame to the last. Follow the camera movement, framing, timing, and body movements of <Video 1> exactly.",
+      "width": [
+        "115",
+        0
+      ],
+      "height": [
+        "115",
+        1
+      ],
+      "length": 158,
+      "vae": [
+        "152",
+        0
+      ],
+      "ref_images.ref_image_0": [
+        "500",
+        0
+      ],
+      "ref_videos.ref_video_0": [
+        "376",
+        0
+      ]
+    },
+    "class_type": "MiniMaxH3ReferenceToVideo",
+    "_meta": {
+      "title": "MiniMax H3 Reference to Video"
+    }
+  },
+  "151": {
+    "inputs": {
+      "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "type": "minimax",
+      "device": "default"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "CLIPLoader (GGUF)"
+    }
+  },
+  "376": {
+    "inputs": {
+      "image": [
+        "392",
+        0
+      ],
+      "upscale_method": "nearest-exact",
+      "width": [
+        "115",
+        0
+      ],
+      "height": [
+        "115",
+        1
+      ],
+      "crop": "disabled"
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "Resize Image v2"
+    }
+  },
+  "92": {
+    "inputs": {
+      "filename_prefix": "video/cat_swap",
+      "format": "auto",
+      "codec": "auto",
+      "video": [
+        "130",
+        0
+      ]
+    },
+    "class_type": "SaveVideo",
+    "_meta": {
+      "title": "Save Video"
+    }
+  },
+  "152": {
+    "inputs": {
+      "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "124": {
+    "inputs": {
+      "scheduler": "simple",
+      "steps": 20,
+      "denoise": 1,
+      "model": [
+        "147",
+        0
+      ]
+    },
+    "class_type": "BasicScheduler",
+    "_meta": {
+      "title": "BasicScheduler"
+    }
+  },
+  "147": {
+    "inputs": {
+      "lora_name": "h3_character_swap_pro4500_1000.safetensors",
+      "strength_model": 1,
+      "model": [
+        "150",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "Load LoRA"
+    }
+  },
+  "500": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "my_cat_reference_sheet.png"
+    }
+  },
+  "122": {
+    "inputs": {
+      "samples": [
+        "125",
+        0
+      ],
+      "vae": [
+        "152",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "392": {
+    "class_type": "VHS_LoadVideo",
+    "inputs": {
+      "video": "input_video.mp4",
+      "force_rate": 24,
+      "custom_width": 0,
+      "custom_height": 0,
+      "frame_load_cap": 158,
+      "skip_first_frames": 0,
+      "select_every_nth": 1,
+      "format": "AnimateDiff"
+    }
+  },
+  "130": {
+    "inputs": {
+      "fps": 24,
+      "bit_depth": 8,
+      "color_space": "sRGB",
+      "codec": "none",
+      "images": [
+        "122",
+        0
+      ]
+    },
+    "class_type": "CreateVideo",
+    "_meta": {
+      "title": "Create Video"
+    }
+  },
+  "125": {
+    "inputs": {
+      "noise": [
+        "129",
+        0
+      ],
+      "guider": [
+        "126",
+        0
+      ],
+      "sampler": [
+        "123",
+        0
+      ],
+      "sigmas": [
+        "124",
+        0
+      ],
+      "latent_image": [
+        "136",
+        1
+      ]
+    },
+    "class_type": "SamplerCustomAdvanced",
+    "_meta": {
+      "title": "SamplerCustomAdvanced"
+    }
+  },
+  "126": {
+    "inputs": {
+      "model": [
+        "147",
+        0
+      ],
+      "conditioning": [
+        "136",
+        0
+      ]
+    },
+    "class_type": "BasicGuider",
+    "_meta": {
+      "title": "Basic Guider"
+    }
+  },
+  "129": {
+    "inputs": {
+      "noise_seed": 904234
+    },
+    "class_type": "RandomNoise",
+    "_meta": {
+      "title": "RandomNoise"
+    }
+  },
+  "150": {
+    "inputs": {
+      "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "Load Diffusion Model"
+    }
+  },
+  "123": {
+    "inputs": {
+      "sampler_name": "res_multistep"
+    },
+    "class_type": "KSamplerSelect",
+    "_meta": {
+      "title": "KSamplerSelect"
+    }
+  }
+}
